@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-backend
+  labels:
+    app: app-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-backend
+  template:
+    metadata:
+      labels:
+        app: app-backend
+    spec:
+      containers:
+      - image: andersonlbsilva/app-bc-carrefour-dio:1.2
+        name: app-backend
+        livenessProbe:
+          httpGet:
+            path: /healthy.html
+            port: 80
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /healthy.html
+            port: 80
+          initialDelaySeconds: 40
+          timeoutSeconds: 1
+          periodSeconds: 10
+          failureThreshold: 3
+        resources:
+          requests:
+            cpu: "4m"
+            memory: "20Mi"
+          limits:
+            cpu: "200m"
+            memory: "512Mi"
+        #sempre baixa a imagem a cada execucao
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

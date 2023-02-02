@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+ name: carrefour-ingress
+spec:
+ defaultBackend:
+  service:
+   name: backendlb
+   port:
+    number: 80
+#  rules:
+#  - host: bd.carrefour.com
+#    http:
+#     paths:
+#     - pathType: Prefix
+#       path: "/"
+#       backend:
+#        service:
+#         name: backendlb
+#         port:
+#          number: 80
