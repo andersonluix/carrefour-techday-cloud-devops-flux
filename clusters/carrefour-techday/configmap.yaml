@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mysql-initdb-config
-  namespace: default
-data:
-  initdb.sql: |
-    USE meubanco;
-    CREATE TABLE mensagens (id int, nome VARCHAR(256), email VARCHAR(100), comentario VARCHAR(150));
