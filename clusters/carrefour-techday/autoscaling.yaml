@@ -3,6 +3,7 @@ kind: HorizontalPodAutoscaler
 metadata:
  name: app-backend
  namespace: default
+ namespace: default
  labels:
     app: app-backend
 spec:
